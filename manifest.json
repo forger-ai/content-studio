@@ -1,0 +1,119 @@
+{
+  "name": "content-studio",
+  "version": "0.1.0",
+  "description": "Local Content Studio for planning posts by date, channel, category, caption, and image or video content.",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "summary": "Initial Content Studio app.",
+      "changes": [
+        "Adds a monthly content calendar with post creation, detail, editing, deletion, and drag-and-drop date changes.",
+        "Stores local posts with channel, caption, category color, image content, video content, posted video state, and media references.",
+        "Adds a Content Strategist agent for planning content from inside the app."
+      ]
+    }
+  ],
+  "stack": {
+    "backend": {
+      "language": "python",
+      "framework": "fastapi",
+      "package_manager": "uv",
+      "database": "sqlite",
+      "python_version": "3.12"
+    },
+    "frontend": {
+      "language": "typescript",
+      "framework": "react",
+      "bundler": "vite",
+      "ui": "mui",
+      "node_version": "24"
+    }
+  },
+  "catalog": {
+    "display_name": "Content Studio",
+    "icon_path": "frontend/public/content-studio-logo.png",
+    "short_description": "Calendario y planificador local para posts.",
+    "description": "Content Studio ayuda a una persona a organizar publicaciones locales en un calendario mensual, con categorias coloreadas, captions, referencias de media, estructura para piezas de imagen o video, y un agente estratega para planificar contenido.",
+    "category": "productivity",
+    "capabilities": [
+      {
+        "id": "local_content_studio",
+        "title": "Planificar contenido localmente",
+        "description": "Guarda posts, categorias, captions y estructuras de contenido dentro del espacio privado de la app."
+      },
+      {
+        "id": "agent_content_planning",
+        "title": "Planificar con Agent",
+        "description": "Permite que un Agent revise, cree y edite posts usando herramientas internas validadas."
+      }
+    ],
+    "supported_platforms": [
+      "darwin_arm64",
+      "darwin_x64"
+    ],
+    "beta": true
+  },
+  "agents": [
+    {
+      "id": "content-strategist",
+      "title": "Content Strategist",
+      "description": "Planifica calendarios de contenido, tonos, canales y estructura de posts.",
+      "initialPrompt": "Actúa como un planificador de contenido y estratega de marketing para Content Studio. Ayuda al usuario a convertir ideas en un calendario accionable de posts, con fechas, canales, categorías, captions, estructura visual y guiones cuando corresponda. Prioriza claridad, consistencia de tono y planificación semanal práctica. Usa las herramientas MCP de la app para revisar, crear o editar posts cuando el usuario lo pida. Antes de hacer cambios grandes, resume brevemente la propuesta y confirma si hay riesgo de borrar o reemplazar contenido existente."
+    }
+  ],
+  "services": [
+    {
+      "name": "backend",
+      "type": "http",
+      "context": "./backend",
+      "port": 8000,
+      "command": "uv run fastapi dev src/app/main.py --host 0.0.0.0 --port 8000",
+      "healthcheck": "/api/health",
+      "environment": {
+        "DATABASE_URL": "sqlite:///{app_data}/content-studio.sqlite",
+        "CORS_ORIGINS": "http://localhost:5182,http://127.0.0.1:5182"
+      },
+      "volumes": [
+        {
+          "source": "./backend",
+          "target": "/app"
+        },
+        {
+          "source": "./backend/data",
+          "target": "/app/data",
+          "persist": true
+        }
+      ]
+    },
+    {
+      "name": "frontend",
+      "type": "http",
+      "context": "./frontend",
+      "port": 5182,
+      "command": "npm run dev -- --host 0.0.0.0 --port 5182",
+      "environment": {
+        "VITE_API_BASE_URL": "http://localhost:8000"
+      },
+      "depends_on": [
+        "backend"
+      ]
+    }
+  ],
+  "mcp": {
+    "type": "http",
+    "context": "./backend",
+    "command": "python -m app.mcp_server",
+    "healthcheck": "/health",
+    "environment": {
+      "DATABASE_URL": "sqlite:///{app_data}/content-studio.sqlite",
+      "PYTHONPATH": "./src"
+    },
+    "toolTimeoutSec": 600
+  },
+  "scripts": {
+    "verify": "cd backend && uv run pytest && cd ../frontend && npm run verify"
+  },
+  "skills": [
+    "./skills/stack-database-extension"
+  ]
+}
