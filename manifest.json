@@ -1,8 +1,16 @@
 {
   "name": "content-studio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Local Content Studio for planning posts by date, channel, category, caption, and image or video content.",
   "changelog": [
+    {
+      "version": "0.1.1",
+      "summary": "Updates catalog metadata for publication.",
+      "changes": [
+        "Uses catalog-supported capability keys for local visual assets and agent-assisted edits.",
+        "Publishes the updated Content Studio logo in catalog metadata."
+      ]
+    },
     {
       "version": "0.1.0",
       "summary": "Initial Content Studio app.",
@@ -37,12 +45,12 @@
     "category": "productivity",
     "capabilities": [
       {
-        "id": "local_content_studio",
+        "id": "local_visual_assets",
         "title": "Planificar contenido localmente",
         "description": "Guarda posts, categorias, captions y estructuras de contenido dentro del espacio privado de la app."
       },
       {
-        "id": "agent_content_planning",
+        "id": "agent_assisted_edits",
         "title": "Planificar con Agent",
         "description": "Permite que un Agent revise, cree y edite posts usando herramientas internas validadas."
       }
