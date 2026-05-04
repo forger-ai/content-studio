@@ -1,8 +1,15 @@
 {
   "name": "content-studio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Local Content Studio for planning posts by date, channel, category, caption, and image or video content.",
   "changelog": [
+    {
+      "version": "0.1.2",
+      "summary": "Updates catalog copy.",
+      "changes": [
+        "Changes the visible Content Studio catalog description and capability copy to English."
+      ]
+    },
     {
       "version": "0.1.1",
       "summary": "Updates catalog metadata for publication.",
@@ -40,19 +47,19 @@
   "catalog": {
     "display_name": "Content Studio",
     "icon_path": "frontend/public/content-studio-logo.png",
-    "short_description": "Calendario y planificador local para posts.",
-    "description": "Content Studio ayuda a una persona a organizar publicaciones locales en un calendario mensual, con categorias coloreadas, captions, referencias de media, estructura para piezas de imagen o video, y un agente estratega para planificar contenido.",
+    "short_description": "Local calendar and planner for content posts.",
+    "description": "Content Studio helps one person organize local content posts in a monthly calendar, with color-coded categories, captions, media references, image or video content structure, and a strategist agent for planning content.",
     "category": "productivity",
     "capabilities": [
       {
         "id": "local_visual_assets",
-        "title": "Planificar contenido localmente",
-        "description": "Guarda posts, categorias, captions y estructuras de contenido dentro del espacio privado de la app."
+        "title": "Plan content locally",
+        "description": "Stores posts, categories, captions, and content structures inside the app private workspace."
       },
       {
         "id": "agent_assisted_edits",
-        "title": "Planificar con Agent",
-        "description": "Permite que un Agent revise, cree y edite posts usando herramientas internas validadas."
+        "title": "Plan with an Agent",
+        "description": "Lets an Agent review, create, and edit posts using validated internal tools."
       }
     ],
     "supported_platforms": [
