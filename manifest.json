@@ -1,8 +1,16 @@
 {
   "name": "content-studio",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Local Content Studio for planning posts by date, channel, category, caption, and image or video content.",
   "changelog": [
+    {
+      "version": "0.1.3",
+      "summary": "Publishes agent and prompt metadata.",
+      "changes": [
+        "Includes Content Studio agent and prompt metadata in the catalog publish payload.",
+        "Adds reusable planning prompts for the Content Strategist agent."
+      ]
+    },
     {
       "version": "0.1.2",
       "summary": "Updates catalog copy.",
@@ -74,6 +82,20 @@
       "title": "Content Strategist",
       "description": "Planifica calendarios de contenido, tonos, canales y estructura de posts.",
       "initialPrompt": "Actúa como un planificador de contenido y estratega de marketing para Content Studio. Ayuda al usuario a convertir ideas en un calendario accionable de posts, con fechas, canales, categorías, captions, estructura visual y guiones cuando corresponda. Prioriza claridad, consistencia de tono y planificación semanal práctica. Usa las herramientas MCP de la app para revisar, crear o editar posts cuando el usuario lo pida. Antes de hacer cambios grandes, resume brevemente la propuesta y confirma si hay riesgo de borrar o reemplazar contenido existente."
+    }
+  ],
+  "promptTemplates": [
+    {
+      "id": "plan-content-week",
+      "title": "Plan a content week",
+      "description": "Creates a practical weekly content plan with dates, channels, categories, captions, and post structure.",
+      "prompt": "Use Content Studio MCP tools to review the current calendar and categories, then plan {{count}} posts for the week starting {{week_start}}. Create posts only after checking the requested week for existing content. Use practical channels, clear captions, category names that fit the user's theme, and image or video structure when useful. Return a concise summary of created or updated posts and mention any gaps that still need user input."
+    },
+    {
+      "id": "rewrite-content-tone",
+      "title": "Rewrite a post tone",
+      "description": "Adapts one post caption and structure toward a requested tone without changing its date or channel.",
+      "prompt": "Use Content Studio MCP tools to inspect the requested post, then rewrite its caption and supporting structure toward this tone: {{tone}}. Preserve the original publishing date, medium, and core idea unless the user asks for a larger change. Apply the update only to the selected post and return a concise summary of what changed."
     }
   ],
   "services": [
