@@ -5,6 +5,8 @@ type ForgerAgent = {
   title: string;
   description?: string;
   initialPrompt: string;
+  model?: string;
+  reasoningEffort?: "low" | "medium" | "high" | "xhigh";
 };
 
 type ForgerAppContext = {
