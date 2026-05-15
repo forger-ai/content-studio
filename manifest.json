@@ -1,8 +1,15 @@
 {
   "name": "content-studio",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Local Content Studio for planning posts by date, channel, category, caption, and image or video content.",
   "changelog": [
+    {
+      "version": "0.1.5",
+      "summary": "Adds Claude agent guidance.",
+      "changes": [
+        "Includes Claude guidance that points agents back to the app's AGENTS.md contract."
+      ]
+    },
     {
       "version": "0.1.4",
       "summary": "Declares strategist runtime metadata.",
