@@ -88,7 +88,7 @@
       "darwin_arm64",
       "darwin_x64"
     ],
-    "beta": true
+    "status": "coming"
   },
   "agents": [
     {
